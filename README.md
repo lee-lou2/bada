@@ -42,7 +42,10 @@ scripts/build.sh --install
 
 메뉴 막대의 bada 아이콘 → **설정…**
 
-<img src="docs/settings.png" width="360" align="right" alt="설정 창">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/settings-dark.png">
+  <img src="docs/settings-light.png" width="380" align="right" alt="bada 설정 창">
+</picture>
 
 - **단축키**, **마이크**
 - **단어장**: 이름과 용어를 쉼표로 적으면 인식과 다듬기 모두 그 표기를 따릅니다.
