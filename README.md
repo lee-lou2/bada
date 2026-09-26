@@ -16,7 +16,10 @@
 Apple Silicon Mac, macOS 14 이상에서 동작합니다.
 
 1. [Releases](https://github.com/lee-lou2/mal2geul/releases/latest)에서 `Mal2geul-x.y.z.dmg`를 받아 말2글을 응용 프로그램 폴더로 옮깁니다.
-2. 처음 열 때 “확인할 수 없음” 경고가 뜨면 **시스템 설정 → 개인정보 보호 및 보안**의 맨 아래에서 **그래도 열기**를 누릅니다. Apple 공증을 받지 않은 오픈소스 빌드라서 뜨는 경고입니다. (터미널: `xattr -dr com.apple.quarantine /Applications/말2글.app`)
+2. 처음 열면 “Apple은 ‘말2글’에 사용자의 Mac에 손상을 입히거나 사용자의 개인정보에 침입할 수 있는 악성 코드가 없음을 확인할 수 없습니다”라는 안내가 뜹니다. Apple 공증(notarization)을 받지 않은 앱에 뜨는 표준 경고이고, 악성 코드를 찾았다는 뜻은 아니에요. 이렇게 열면 됩니다.
+   - **시스템 설정 → 개인정보 보호 및 보안**의 맨 아래에서 **그래도 열기**를 누릅니다. (또는 파일을 마우스 오른쪽 버튼으로 눌러 **열기**)
+   - 또는 터미널: `xattr -dr com.apple.quarantine /Applications/말2글.app`
+   경고가 아예 안 뜨게 하려면 Apple Developer 계정으로 공증을 받으면 돼요([스크립트 준비됨](scripts/notarize.sh)).
 3. 설정 창의 안내대로 마이크와 손쉬운 사용을 허용합니다.
 4. 처음 한 번 음성 엔진과 모델(합쳐서 약 2.4GB)을 알아서 내려받아 설치합니다. 설정 창에 **음성 모델 준비됨**이 뜨면 끝입니다.
 

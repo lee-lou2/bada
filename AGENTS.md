@@ -34,6 +34,8 @@ Logs: `~/Library/Logs/Mal2geul/mal2geul.log` and `engine.log`.
 
 Bump `CFBundleShortVersionString` in `Resources/Info.plist`, run `scripts/build.sh --dmg`, and attach the DMG to a `vX.Y.Z` GitHub release. Sign every release with the same identity (`MAL2GEUL_SIGN_IDENTITY`, or the local one in `~/Library/Application Support/Mal2geul/signing`), otherwise users lose their Microphone and Accessibility permission on update.
 
+The local identity is self-signed, so Gatekeeper shows the "Apple can't check it for malware" dialog on the downloaded DMG. To release without it, run `scripts/notarize.sh`: it needs an Apple Developer Program membership, a Developer ID Application certificate and notarytool credentials (see the script header), and submits the app and DMG to Apple, then staples the tickets.
+
 ## Rules
 
 - Audio never leaves the Mac. Only the transcript and the vocabulary go to the LLM the user configured.
