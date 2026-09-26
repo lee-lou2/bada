@@ -72,6 +72,9 @@ final class DictationController {
     func start() {
         guard phase == .idle else { return }
         switch engine.status {
+        case .installing:
+            hud.flash("음성 엔진을 설치하는 중이에요", symbol: "shippingbox", at: FocusedField.current())
+            return
         case .downloading:
             hud.flash("음성 모델을 내려받는 중이에요", symbol: "arrow.down.circle", at: FocusedField.current())
             return

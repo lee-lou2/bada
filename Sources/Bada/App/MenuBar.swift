@@ -45,6 +45,7 @@ final class MenuBar: NSObject, NSMenuDelegate {
 
         switch state.engineStatus {
         case .ready: break
+        case .installing: menu.addNote("음성 엔진 설치 중…")
         case .starting: menu.addNote("음성 모델 불러오는 중…")
         case .downloading: menu.addNote("음성 모델 내려받는 중…")
         case let .failed(message): menu.addItem("\(message) · 다시 시작", action: #selector(restartEngine))

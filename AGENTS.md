@@ -14,18 +14,25 @@ bada is a macOS menu bar app for Korean dictation. A shortcut opens a small caps
 | `Sources/Bada/HUD` | The floating capsule |
 | `Sources/Bada/Settings` | Settings window |
 | `Sources/Bada/Support` | Preferences, shortcuts, permissions, paths, logging, colors |
-| `engine/` | `engine.py` and its pinned requirements |
-| `scripts/` | `build.sh` (build, `--install`) and `sign.sh` |
+| `engine/` | `engine.py`, `requirements.in`, and the hash-locked `requirements.txt` |
+| `scripts/` | `build.sh` (build, `--install`, `--dmg`) and `sign.sh` |
 
 ## Build
 
 ```sh
 scripts/build.sh            # build/Bada.app
 scripts/build.sh --install  # /Applications/Bada.app, then open it
+scripts/build.sh --dmg      # build/Bada-<version>.dmg for a GitHub release
 swift build                 # quick compile check
 ```
 
+On first launch the app installs the speech engine into `~/Library/Application Support/Bada/engine` (`EngineInstaller`: pinned uv → managed Python → `requirements.txt`). It reinstalls when the lock file changes. After editing `engine/requirements.in`, regenerate the lock with the command at its top.
+
 Logs: `~/Library/Logs/Bada/bada.log` and `engine.log`.
+
+## Releases
+
+Bump `CFBundleShortVersionString` in `Resources/Info.plist`, run `scripts/build.sh --dmg`, and attach the DMG to a `vX.Y.Z` GitHub release. Sign every release with the same identity (`BADA_SIGN_IDENTITY`, or the local one in `~/Library/Application Support/Bada/signing`), otherwise users lose their Microphone and Accessibility permission on update.
 
 ## Rules
 

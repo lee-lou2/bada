@@ -120,6 +120,9 @@ struct EngineBadge: View {
             case .ready:
                 Circle().fill(Color.green).frame(width: 7, height: 7).shadow(color: .green.opacity(0.6), radius: 3)
                 Text("음성 모델 준비됨")
+            case .installing:
+                ProgressView().controlSize(.mini)
+                Text("음성 엔진 설치 중")
             case .starting:
                 ProgressView().controlSize(.mini)
                 Text("모델 불러오는 중")

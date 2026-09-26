@@ -1,0 +1,4 @@
+# Direct dependencies of engine.py. Lock with:
+#   uv pip compile engine/requirements.in -o engine/requirements.txt --generate-hashes --python-version 3.12 --python-platform aarch64-apple-darwin
+mlx-qwen3-asr==0.4.4
+mlx==0.32.2

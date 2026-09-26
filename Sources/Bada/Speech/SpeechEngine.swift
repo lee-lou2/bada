@@ -7,7 +7,10 @@ import Foundation
 /// JSON line. The child exits when its stdin closes, so it never outlives the app.
 final class SpeechEngine: ObservableObject {
     enum Status: Equatable {
+        /// First launch or an update: setting up Python and the packages.
+        case installing
         case starting
+        /// First launch: fetching the model (about 2 GB).
         case downloading
         case ready
         case failed(String)
@@ -39,15 +42,16 @@ final class SpeechEngine: ObservableObject {
     private var queued: [(id: Int, header: Data, audio: Data)] = []
     private var recentExits: [Date] = []
     private var isStopping = false
+    private var isInstalling = false
     private let writer = DispatchQueue(label: "app.bada.engine.writer", qos: .userInitiated)
 
     // MARK: Lifecycle
 
     func start() {
-        guard process == nil else { return }
+        guard process == nil, !isInstalling else { return }
         isStopping = false
-        guard FileManager.default.isExecutableFile(atPath: AppPaths.python.path) else {
-            fail("음성 엔진이 설치되지 않았어요", log: "python not found at \(AppPaths.python.path)")
+        guard EngineInstaller.isInstalled else {
+            install()
             return
         }
         guard let script = Bundle.main.url(forResource: "engine", withExtension: "py") else {
@@ -71,7 +75,7 @@ final class SpeechEngine: ObservableObject {
         let stdout = Pipe()
         process.standardInput = stdin
         process.standardOutput = stdout
-        process.standardError = SpeechEngine.logFile()
+        process.standardError = Log.engineOutput()
         stdout.fileHandleForReading.readabilityHandler = { [weak self] handle in
             let data = handle.availableData
             DispatchQueue.main.async { self?.receive(data) }
@@ -90,6 +94,22 @@ final class SpeechEngine: ObservableObject {
         input = stdin.fileHandleForWriting
         output.removeAll()
         status = .starting
+    }
+
+    private func install() {
+        isInstalling = true
+        status = .installing
+        Log.info("installing the speech engine")
+        Task { @MainActor in
+            do {
+                try await EngineInstaller.install()
+                isInstalling = false
+                start()
+            } catch {
+                isInstalling = false
+                fail("음성 엔진을 설치하지 못했어요", log: "engine install: \(error.localizedDescription)")
+            }
+        }
     }
 
     func stop() {
@@ -226,18 +246,5 @@ final class SpeechEngine: ObservableObject {
         waiting.removeAll()
         queued.removeAll()
         pending.values.forEach { $0(.failure(error)) }
-    }
-
-    private static func logFile() -> FileHandle {
-        let manager = FileManager.default
-        let url = AppPaths.logs.appendingPathComponent("engine.log")
-        try? manager.createDirectory(at: AppPaths.logs, withIntermediateDirectories: true)
-        if let size = (try? manager.attributesOfItem(atPath: url.path))?[.size] as? Int, size > 2_000_000 {
-            try? manager.removeItem(at: url)
-        }
-        if !manager.fileExists(atPath: url.path) { manager.createFile(atPath: url.path, contents: nil) }
-        guard let handle = try? FileHandle(forWritingTo: url) else { return .nullDevice }
-        _ = try? handle.seekToEnd()
-        return handle
     }
 }

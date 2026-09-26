@@ -16,6 +16,20 @@ enum Log {
         queue.async { append(line) }
     }
 
+    /// Where the speech engine and its installer write their output: `engine.log`.
+    static func engineOutput() -> FileHandle {
+        let manager = FileManager.default
+        let url = AppPaths.logs.appendingPathComponent("engine.log")
+        try? manager.createDirectory(at: AppPaths.logs, withIntermediateDirectories: true)
+        if let size = (try? manager.attributesOfItem(atPath: url.path))?[.size] as? Int, size > 2 * maxBytes {
+            try? manager.removeItem(at: url)
+        }
+        if !manager.fileExists(atPath: url.path) { manager.createFile(atPath: url.path, contents: nil) }
+        guard let handle = try? FileHandle(forWritingTo: url) else { return .nullDevice }
+        _ = try? handle.seekToEnd()
+        return handle
+    }
+
     private static func append(_ line: String) {
         let manager = FileManager.default
         try? manager.createDirectory(at: AppPaths.logs, withIntermediateDirectories: true)
