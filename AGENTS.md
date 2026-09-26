@@ -39,6 +39,7 @@ Bump `CFBundleShortVersionString` in `Resources/Info.plist`, run `scripts/build.
 - Audio never leaves the Mac. Only the transcript and the vocabulary go to the LLM the user configured.
 - Never log, print or commit transcripts, API keys, endpoints or machine-specific paths.
 - UI text is Korean; code, comments and commit messages are English. The app is 말2글 in the UI and mal2geul (`Mal2geul` in type and file names) everywhere else.
+- `Polisher.instructions` is English with Korean output on purpose. Keep it short: detailed rule lists make reasoning models deliberate much longer and slow dictation down; examples carry the behavior.
 - Apple frameworks only on the Swift side. Python dependencies stay pinned in `engine/requirements.txt`.
 - `swift build` must stay free of warnings.
 - The HUD panel must never take focus: typing stays in the user's app.
