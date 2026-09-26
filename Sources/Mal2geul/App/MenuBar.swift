@@ -19,7 +19,7 @@ final class MenuBar: NSObject, NSMenuDelegate {
     override init() {
         super.init()
         item.button?.image = Brand.statusIcon(active: false)
-        item.button?.toolTip = "bada"
+        item.button?.toolTip = "말2글"
         let menu = NSMenu()
         menu.delegate = self
         menu.autoenablesItems = false
@@ -54,7 +54,7 @@ final class MenuBar: NSObject, NSMenuDelegate {
         menu.addItem(.separator())
         menu.addItem("설정…", action: #selector(openSettings), key: ",")
         menu.addItem(.separator())
-        menu.addItem("bada 종료", action: #selector(quit), key: "q")
+        menu.addItem("말2글 종료", action: #selector(quit), key: "q")
 
         for item in menu.items where item.action != nil { item.target = self }
     }

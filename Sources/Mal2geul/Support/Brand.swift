@@ -1,9 +1,9 @@
 import AppKit
 import SwiftUI
 
-/// bada = 받아(쓰기) + 바다. A night sea that lights up when you speak.
+/// 말2글 (mal2geul): 말, speech, becomes 글, writing. Dark glass that lights up with the voice.
 enum Brand {
-    static let tagline = "말하면, 받아 적습니다."
+    static let tagline = "말하면, 글이 됩니다."
 
     // Capsule body.
     static let ink = Color(hex: 0x07090E)
@@ -18,12 +18,12 @@ enum Brand {
     static let mint = Color(hex: 0x3EF0A8)
     static let coral = Color(hex: 0xFF6B6B)
 
-    /// Listening: voice on the water.
-    static let sea: [Color] = [cyan, blue, violet, blue, aqua, cyan]
+    /// Listening: the voice lights up the capsule.
+    static let listening: [Color] = [cyan, blue, violet, blue, aqua, cyan]
     /// Transcribing: calm and cool.
-    static let tide: [Color] = [cyan, blue, cyan, aqua, blue, cyan]
+    static let transcribing: [Color] = [cyan, blue, cyan, aqua, blue, cyan]
     /// Polishing with the LLM.
-    static let magic: [Color] = [violet, pink, amber, pink, violet, blue, violet]
+    static let polishing: [Color] = [violet, pink, amber, pink, violet, blue, violet]
     static let success: [Color] = [mint, cyan, mint, aqua, mint]
     static let warning: [Color] = [amber, coral, amber, amber]
 

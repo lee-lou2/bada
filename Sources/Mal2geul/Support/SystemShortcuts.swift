@@ -2,7 +2,7 @@ import AppKit
 import Carbon
 
 /// macOS's own keyboard shortcuts (System Settings › Keyboard › Keyboard Shortcuts).
-/// When one uses the same keys, macOS may take the key press before bada sees it.
+/// When one uses the same keys, macOS may take the key press before mal2geul sees it.
 enum SystemShortcuts {
     private static let names: [Int: String] = [
         32: "Mission Control",

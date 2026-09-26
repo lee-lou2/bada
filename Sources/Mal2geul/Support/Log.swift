@@ -1,9 +1,9 @@
 import Foundation
 
-/// Plain-text log in `~/Library/Logs/Bada`. Sizes and timings only, never what was said.
+/// Plain-text log in `~/Library/Logs/Mal2geul`. Sizes and timings only, never what was said.
 enum Log {
-    private static let file = AppPaths.logs.appendingPathComponent("bada.log")
-    private static let queue = DispatchQueue(label: "app.bada.log")
+    private static let file = AppPaths.logs.appendingPathComponent("mal2geul.log")
+    private static let queue = DispatchQueue(label: "app.mal2geul.log")
     private static let maxBytes = 1_000_000
     private static let timestamp: ISO8601DateFormatter = {
         let formatter = ISO8601DateFormatter()
@@ -34,7 +34,7 @@ enum Log {
         let manager = FileManager.default
         try? manager.createDirectory(at: AppPaths.logs, withIntermediateDirectories: true)
         if let size = (try? manager.attributesOfItem(atPath: file.path))?[.size] as? Int, size > maxBytes {
-            let previous = AppPaths.logs.appendingPathComponent("bada.1.log")
+            let previous = AppPaths.logs.appendingPathComponent("mal2geul.1.log")
             try? manager.removeItem(at: previous)
             try? manager.moveItem(at: file, to: previous)
         }

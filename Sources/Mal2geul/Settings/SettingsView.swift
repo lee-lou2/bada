@@ -96,7 +96,7 @@ struct SettingsView: View {
             }
             Divider()
             Row("단어장", detail: "이름·용어를 쉼표로 구분") {
-                TextField("단어장", text: $preferences.vocabulary, prompt: Text("바다, Qwen, MLX, 김지훈"), axis: .vertical)
+                TextField("단어장", text: $preferences.vocabulary, prompt: Text("말2글, Qwen, MLX, 김지훈"), axis: .vertical)
                     .lineLimit(1...3)
                     .settingsField()
             }

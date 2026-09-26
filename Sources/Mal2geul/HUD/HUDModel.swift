@@ -52,9 +52,9 @@ final class HUDModel: ObservableObject {
     private var angle: Double = 0
     private var spin: Double = 30
     private var lastTick: Double = 0
-    private var colors = HUDModel.stops(Brand.sea)
-    private var fromColors = HUDModel.stops(Brand.sea)
-    private var toColors = HUDModel.stops(Brand.sea)
+    private var colors = HUDModel.stops(Brand.listening)
+    private var fromColors = HUDModel.stops(Brand.listening)
+    private var toColors = HUDModel.stops(Brand.listening)
 
     func setMode(_ next: Mode, at now: Double = Date.timeIntervalSinceReferenceDate) {
         guard next != mode else { return }
@@ -135,11 +135,11 @@ final class HUDModel: ObservableObject {
 
     private static func palette(for mode: Mode) -> [Color] {
         switch mode {
-        case .listening: return Brand.sea
-        case .transcribing: return Brand.tide
-        case .polishing: return Brand.magic
+        case .listening: return Brand.listening
+        case .transcribing: return Brand.transcribing
+        case .polishing: return Brand.polishing
         case .done: return Brand.success
-        case .notice(_, _, .calm): return Brand.tide
+        case .notice(_, _, .calm): return Brand.transcribing
         case .notice(_, _, .warning): return Brand.warning
         case .notice(_, _, .success): return Brand.success
         }

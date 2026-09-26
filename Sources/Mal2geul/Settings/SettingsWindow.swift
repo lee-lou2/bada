@@ -44,7 +44,7 @@ final class SettingsWindow: NSObject, NSWindowDelegate {
             backing: .buffered,
             defer: false
         )
-        window.title = "bada 설정"
+        window.title = "말2글 설정"
         window.titleVisibility = .hidden
         window.titlebarAppearsTransparent = true
         window.isMovableByWindowBackground = true

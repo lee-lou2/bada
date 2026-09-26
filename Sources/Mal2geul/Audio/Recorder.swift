@@ -40,7 +40,7 @@ final class Recorder {
     private static let shortestSegment = Int(15 * sampleRate)
     private static let maxRestarts = 3
 
-    private let queue = DispatchQueue(label: "app.bada.recorder", qos: .userInitiated)
+    private let queue = DispatchQueue(label: "app.mal2geul.recorder", qos: .userInitiated)
     private let ring = SampleRing(capacity: 1 << 20)
     private let scratchCapacity = 16_384
     private let scratch: UnsafeMutablePointer<Float>

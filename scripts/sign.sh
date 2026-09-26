@@ -1,28 +1,28 @@
 #!/bin/bash
-# Code-signs Bada.app.
+# Code-signs 말2글.app.
 #
-#   scripts/sign.sh build/Bada.app
-#   BADA_SIGN_IDENTITY="Developer ID Application: …" scripts/sign.sh build/Bada.app
+#   scripts/sign.sh build/말2글.app
+#   MAL2GEUL_SIGN_IDENTITY="Developer ID Application: …" scripts/sign.sh build/말2글.app
 #
 # macOS remembers Microphone and Accessibility permission by code signature. An ad-hoc signature
 # changes with every build, so those permissions would be lost each time. Without a Developer ID,
 # this script signs with a self-signed identity kept in its own keychain in
-# ~/Library/Application Support/Bada/signing. The login keychain and trust settings are untouched.
+# ~/Library/Application Support/Mal2geul/signing. The login keychain and trust settings are untouched.
 set -euo pipefail
 
 APP="$1"
-ENTITLEMENTS="$(cd "$(dirname "$0")/.." && pwd)/Resources/Bada.entitlements"
+ENTITLEMENTS="$(cd "$(dirname "$0")/.." && pwd)/Resources/Mal2geul.entitlements"
 
 sign() { codesign --force --options runtime --entitlements "$ENTITLEMENTS" "$@" "$APP"; }
 
-if [[ -n "${BADA_SIGN_IDENTITY:-}" ]]; then
-  sign --timestamp --sign "$BADA_SIGN_IDENTITY"
+if [[ -n "${MAL2GEUL_SIGN_IDENTITY:-}" ]]; then
+  sign --timestamp --sign "$MAL2GEUL_SIGN_IDENTITY"
   exit 0
 fi
 
-DIR="$HOME/Library/Application Support/Bada/signing"
+DIR="$HOME/Library/Application Support/Mal2geul/signing"
 KEYCHAIN="$DIR/signing.keychain-db"
-NAME="bada local signing"
+NAME="mal2geul local signing"
 
 if [[ ! -f "$KEYCHAIN" ]]; then
   echo "Creating a local signing identity in $DIR"

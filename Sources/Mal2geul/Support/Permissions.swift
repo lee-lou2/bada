@@ -49,7 +49,7 @@ final class Permissions: ObservableObject {
     }
 
     func requestAccessibility() {
-        // The prompt also adds bada to the list, so the user only has to flip the switch.
+        // The prompt also adds mal2geul to the list, so the user only has to flip the switch.
         Permissions.promptForAccessibility()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
             self.openPrivacySettings("Privacy_Accessibility")

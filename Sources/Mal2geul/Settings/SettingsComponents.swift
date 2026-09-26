@@ -97,7 +97,7 @@ struct Header: View {
                 .overlay(RoundedRectangle(cornerRadius: 14, style: .continuous).strokeBorder(Color.white.opacity(0.14), lineWidth: 0.6))
                 .shadow(color: Brand.blue.opacity(0.35), radius: 12, y: 4)
             VStack(alignment: .leading, spacing: 2) {
-                Text("bada")
+                Text("말2글")
                     .font(.system(size: 28, weight: .bold, design: .rounded))
                     .tracking(-0.5)
                 Text(Brand.tagline)
@@ -323,7 +323,7 @@ struct Backdrop: View {
     @MainActor private static let glow: NSImage = {
         let renderer = ImageRenderer(
             content: Ellipse()
-                .fill(AngularGradient(colors: Brand.sea + [Brand.pink.opacity(0.85), Brand.cyan], center: .center, angle: .degrees(40)))
+                .fill(AngularGradient(colors: Brand.listening + [Brand.pink.opacity(0.85), Brand.cyan], center: .center, angle: .degrees(40)))
                 .frame(width: 440, height: 150)
                 .blur(radius: 58)
                 .frame(width: 720, height: 380)

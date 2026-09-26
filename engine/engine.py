@@ -1,4 +1,4 @@
-"""bada speech engine: Qwen3-ASR 1.7B (MLX, 8-bit), loaded once and kept warm. Korean only.
+"""mal2geul speech engine: Qwen3-ASR 1.7B (MLX, 8-bit), loaded once and kept warm. Korean only.
 
 The app runs this script as a child process and talks to it over pipes.
 

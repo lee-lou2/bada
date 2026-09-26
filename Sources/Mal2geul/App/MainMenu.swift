@@ -6,8 +6,8 @@ enum MainMenu {
     static func install() {
         let main = NSMenu()
 
-        let app = NSMenu(title: "bada")
-        app.addItem(withTitle: "bada 가리기", action: #selector(NSApplication.hide(_:)), keyEquivalent: "h")
+        let app = NSMenu(title: "말2글")
+        app.addItem(withTitle: "말2글 가리기", action: #selector(NSApplication.hide(_:)), keyEquivalent: "h")
         main.addSubmenu(app)
 
         let edit = NSMenu(title: "편집")

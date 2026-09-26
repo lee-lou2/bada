@@ -1,8 +1,8 @@
-<p align="center"><img src="Resources/AppIcon.png" width="120" alt="bada"></p>
+<p align="center"><img src="Resources/AppIcon.png" width="120" alt="말2글"></p>
 
-<h1 align="center">bada</h1>
+<h1 align="center">말2글</h1>
 
-<p align="center"><b>말하면, 받아 적습니다.</b><br>Mac을 위한 한국어 받아쓰기. 음성 인식은 이 Mac 안에서만 합니다.</p>
+<p align="center"><b>말하면, 글이 됩니다.</b><br>mal2geul · 말이 글이 되는 Mac용 한국어 받아쓰기. 음성 인식은 이 Mac 안에서만 합니다.</p>
 
 <p align="center"><img src="docs/hud.png" width="760" alt="듣는 중, 받아쓰는 중, 다듬는 중, 완료"></p>
 
@@ -15,16 +15,16 @@
 
 Apple Silicon Mac, macOS 14 이상에서 동작합니다.
 
-1. [Releases](https://github.com/lee-lou2/bada/releases/latest)에서 `Bada-x.y.z.dmg`를 받아 Bada를 응용 프로그램 폴더로 옮깁니다.
-2. 처음 열 때 “확인할 수 없음” 경고가 뜨면 **시스템 설정 → 개인정보 보호 및 보안**의 맨 아래에서 **그래도 열기**를 누릅니다. Apple 공증을 받지 않은 오픈소스 빌드라서 뜨는 경고입니다. (터미널: `xattr -dr com.apple.quarantine /Applications/Bada.app`)
+1. [Releases](https://github.com/lee-lou2/mal2geul/releases/latest)에서 `Mal2geul-x.y.z.dmg`를 받아 말2글을 응용 프로그램 폴더로 옮깁니다.
+2. 처음 열 때 “확인할 수 없음” 경고가 뜨면 **시스템 설정 → 개인정보 보호 및 보안**의 맨 아래에서 **그래도 열기**를 누릅니다. Apple 공증을 받지 않은 오픈소스 빌드라서 뜨는 경고입니다. (터미널: `xattr -dr com.apple.quarantine /Applications/말2글.app`)
 3. 설정 창의 안내대로 마이크와 손쉬운 사용을 허용합니다.
 4. 처음 한 번 음성 엔진과 모델(합쳐서 약 2.4GB)을 알아서 내려받아 설치합니다. 설정 창에 **음성 모델 준비됨**이 뜨면 끝입니다.
 
 직접 빌드하려면 [Xcode Command Line Tools](https://developer.apple.com/xcode/resources/)(`xcode-select --install`)만 있으면 됩니다.
 
 ```sh
-git clone https://github.com/lee-lou2/bada.git
-cd bada
+git clone https://github.com/lee-lou2/mal2geul.git
+cd mal2geul
 scripts/build.sh --install
 ```
 
@@ -40,11 +40,11 @@ scripts/build.sh --install
 
 ## 설정
 
-메뉴 막대의 bada 아이콘 → **설정…**
+메뉴 막대의 말2글 아이콘 → **설정…**
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/settings-dark.png">
-  <img src="docs/settings-light.png" width="380" align="right" alt="bada 설정 창">
+  <img src="docs/settings-light.png" width="380" align="right" alt="말2글 설정 창">
 </picture>
 
 - **단축키**, **마이크**
@@ -58,17 +58,17 @@ scripts/build.sh --install
 
 - 음성은 저장하지도, 보내지도 않습니다.
 - LLM 다듬기를 켜면 받아 적은 글과 단어장만 설정한 주소로 보냅니다.
-- API 키는 `~/Library/Application Support/Bada/api-key`에 이 사용자만 읽을 수 있게 저장합니다.
-- 음성 엔진은 `~/Library/Application Support/Bada/engine`에 따로 설치되어 시스템 Python을 건드리지 않습니다. 앱과 이 폴더를 지우면 깨끗이 삭제됩니다.
-- 로그(`~/Library/Logs/Bada`)에는 시간과 길이만 남고 말한 내용은 남지 않습니다.
+- API 키는 `~/Library/Application Support/Mal2geul/api-key`에 이 사용자만 읽을 수 있게 저장합니다.
+- 음성 엔진은 `~/Library/Application Support/Mal2geul/engine`에 따로 설치되어 시스템 Python을 건드리지 않습니다. 앱과 이 폴더를 지우면 깨끗이 삭제됩니다.
+- 로그(`~/Library/Logs/Mal2geul`)에는 시간과 길이만 남고 말한 내용은 남지 않습니다.
 
 ## 구조
 
 ```
-Sources/Bada/   Swift 앱 (App · Dictation · Audio · Speech · Polish · HUD · Settings · Support)
-engine/         음성 엔진 (Python, mlx-qwen3-asr)
-scripts/        build.sh, sign.sh
-Resources/      Info.plist, 권한, 앱 아이콘
+Sources/Mal2geul/  Swift 앱 (App · Dictation · Audio · Speech · Polish · HUD · Settings · Support)
+engine/           음성 엔진 (Python, mlx-qwen3-asr)
+scripts/          build.sh, sign.sh
+Resources/        Info.plist, 권한, 앱 아이콘
 ```
 
 앱은 Swift(AppKit + SwiftUI)이고, 음성 인식은 앱이 띄우는 Python 프로세스가 모델을 계속 올려 둔 채 처리합니다. 이 Python 환경은 앱이 처음 켜질 때 [uv](https://github.com/astral-sh/uv)로 만듭니다(버전·체크섬 고정, 패키지는 해시로 잠금).

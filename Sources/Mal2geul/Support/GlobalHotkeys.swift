@@ -11,7 +11,7 @@ final class GlobalHotkeys {
         case cancel = 2
     }
 
-    private let signature: OSType = 0x4241_4441 // "BADA"
+    private let signature: OSType = 0x4D32_474C // "M2GL"
     private var handler: EventHandlerRef?
     private var hotkeys: [UInt32: EventHotKeyRef] = [:]
     private var actions: [UInt32: () -> Void] = [:]

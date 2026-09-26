@@ -6,7 +6,7 @@ import Foundation
 ///
 /// uv is downloaded from its official release and checked against a pinned SHA-256. uv then installs
 /// its own Python and the hash-locked packages from `requirements.txt`. Everything lives in
-/// `~/Library/Application Support/Bada/engine`; nothing touches the system Python.
+/// `~/Library/Application Support/Mal2geul/engine`; nothing touches the system Python.
 enum EngineInstaller {
     enum Failure: LocalizedError {
         case missingRequirements

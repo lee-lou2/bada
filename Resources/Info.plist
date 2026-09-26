@@ -5,17 +5,17 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>ko</string>
 	<key>CFBundleDisplayName</key>
-	<string>Bada</string>
+	<string>말2글</string>
 	<key>CFBundleExecutable</key>
-	<string>Bada</string>
+	<string>Mal2geul</string>
 	<key>CFBundleIconFile</key>
 	<string>AppIcon</string>
 	<key>CFBundleIdentifier</key>
-	<string>app.bada.mac</string>
+	<string>app.mal2geul.mac</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Bada</string>
+	<string>말2글</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

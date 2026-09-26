@@ -43,7 +43,7 @@ final class SpeechEngine: ObservableObject {
     private var recentExits: [Date] = []
     private var isStopping = false
     private var isInstalling = false
-    private let writer = DispatchQueue(label: "app.bada.engine.writer", qos: .userInitiated)
+    private let writer = DispatchQueue(label: "app.mal2geul.engine.writer", qos: .userInitiated)
 
     // MARK: Lifecycle
 

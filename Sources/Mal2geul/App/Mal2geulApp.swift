@@ -1,7 +1,7 @@
 import AppKit
 
 @main
-enum BadaApp {
+enum Mal2geulApp {
     static func main() {
         // Launched again while running: bring up the settings of the running copy instead.
         if isAlreadyRunning {
@@ -24,5 +24,5 @@ enum BadaApp {
 }
 
 extension Notification.Name {
-    static let showSettings = Notification.Name("app.bada.mac.show-settings")
+    static let showSettings = Notification.Name("app.mal2geul.mac.show-settings")
 }
